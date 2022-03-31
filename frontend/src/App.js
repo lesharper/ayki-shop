@@ -1,15 +1,14 @@
-import './App.css';
-import {Routes, Route} from "react-router";
+import React from 'react';
+import {Routes, Route} from "react-router"
+import Layout from "./pages/Layout";
 import Home from "./pages/Home";
-import Layout  from "./pages/Layout";
 
 const App = () => {
     return (
         <>
             <Routes>
                 <Route path="/" element={<Layout/>}>
-                    <Route exact path="/" element={<Home/>}/>
-                    {/*<Route path="*" element={<NotFound/>}/>*/}
+                    <Route path="/" element={<Home/>}/>
                 </Route>
             </Routes>
         </>

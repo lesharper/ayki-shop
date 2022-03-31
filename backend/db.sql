@@ -1,5 +1,5 @@
 CREATE DATABASE shop;
-
+\CONNECT shop;
 
 -- Создание таблиц --
 
