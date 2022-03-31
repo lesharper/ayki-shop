@@ -1,0 +1,27 @@
+.container {
+    @apply
+    flex h-20 bg-black items-center text-white mb-10
+
+}
+
+.logo {
+    @apply
+    flex items-center justify-center w-28 font-bold text-xl
+}
+
+.navbar {
+    @apply
+    flex justify-around items-center h-full w-[300px]
+}
+
+.navbar_item {
+    @apply
+    flex h-full p-4 items-center cursor-pointer hover:bg-zinc-700 duration-150
+    hover:border-b-4 border-yellow-400
+}
+
+
+.details {
+    @apply
+    flex h-full justify-center items-center w-[600px]
+}

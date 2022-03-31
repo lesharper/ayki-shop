@@ -1,0 +1,10 @@
+.main_container {
+    @apply
+    flex justify-center w-full
+}
+
+.container {
+    @apply
+    w-1/2
+}
+

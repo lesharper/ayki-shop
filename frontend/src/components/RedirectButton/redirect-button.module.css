@@ -1,0 +1,16 @@
+.container {
+    @apply
+    flex m-2 justify-center items-center w-[550px] h-[500px] bg-zinc-700
+    cursor-pointer  shadow-md rounded-md
+    hover:opacity-80 duration-200
+}
+
+.image {
+    @apply
+    h-full w-full text-2xl opacity-30 rounded-md
+}
+
+.text {
+    @apply
+    absolute text-xl uppercase text-white
+}

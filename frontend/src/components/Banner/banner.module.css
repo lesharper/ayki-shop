@@ -1,0 +1,13 @@
+.banner {
+    @apply
+    flex h-[450px] w-full bg-yellow-400 justify-between items-center shadow-md mb-20
+}
+
+.text {
+    @apply
+    flex flex-col ml-72 justify-center text-center w-full
+}
+.image {
+    @apply
+    flex h-[500px] object-cover
+}

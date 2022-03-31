@@ -1,0 +1,4 @@
+.dropdown {
+    @apply
+    px-10 absolute top-20 h-60 bg-zinc-900 w-full shadow-md
+}
