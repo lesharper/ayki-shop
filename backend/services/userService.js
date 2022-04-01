@@ -1,5 +1,4 @@
 const db = require('../db.js')
-const jwt = require("jsonwebtoken");
 const config = require("../config.json");
 
 class UserService {
@@ -30,17 +29,14 @@ class UserService {
         }
     }
 
-    async delete() {
+    async delete(id) {
 
     }
 
-    async update() {
+    async update(id, name, email, password, gender_id) {
 
     }
 
-    generateJwt(id, name, email, role_id, gender_id) {
-        return jwt.sign({id,name,email, role_id, gender_id}, config.SECRET, {expiresIn: '24h'})
-    }
 }
 
 module.exports = new UserService()

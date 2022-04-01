@@ -109,5 +109,7 @@ CREATE TABLE orders (
     FOREIGN KEY (product_id) REFERENCES products (id) ON DELETE CASCADE
 );
 
+
+
 psql \! chcp 1251
 set client_encoding='win1251';

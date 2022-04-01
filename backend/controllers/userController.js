@@ -1,46 +1,57 @@
 const ApiError = require('../error/ApiError')
-const userService = require('../service/userService')
+const userService = require('../services/userService')
 const bcrypt = require('bcrypt')
 
 class UserController {
 
     async registration(req, res, next) {
-        const {name, email, password, gender_id} = req.body
-
-        if(!email || !password)
-            return next(ApiError.BAD_REQUEST('Некорректный email или password'))
+        const {name, email, password, gender} = req.body
+        const gender_id = gender === 'Мужчина' ? 1 : 2
+        if (!email || !password)
+            return next(ApiError.BAD_REQUEST('Некорректная почта или пароль'))
 
         const candidate = await userService.findByEmail(email)
 
-        if(candidate)
+        if (candidate)
             return next(ApiError.BAD_REQUEST('Пользователь уже существует'))
 
         const hashPassword = await bcrypt.hash(password, 5)
         const user = await userService.create(name, email, hashPassword, gender_id)
-        const token = userService.generateJwt(user.id, name, email, user.role_id, gender_id)
-        return res.json({token})
+        return res.json({message: 'Аккаунт создан'})
     }
 
     async login(req, res, next) {
         const {email, password} = req.body
         const user = await userService.findByEmail(email)
 
-        if(!user)
+        if (!user)
             return next(ApiError.BAD_REQUEST('Пользователя не существует'))
 
         let comparePassword = bcrypt.compareSync(password, user.password)
 
-        if(!comparePassword)
+        if (!comparePassword)
             return next(ApiError.BAD_REQUEST('Указан не верный пароль'))
 
-        const token = userService.generateJwt(user.id, user.name, email, user.role_id, user.gender_id)
-        return res.json({token})
+        req.session.user = user;
+        return res.json({message: 'Успех!'})
     }
 
     async check(req, res, next) {
-        const token = userService.generateJwt(req.user.id, req.user.name, req.user.email, req.user.role_id, req.user.gender_id)
-        return res.json({token})
+        if (req.session.user) {
+            res.json({isAuth: true, user: req.session.user});
+        } else {
+            res.json({isAuth: false});
+        }
     }
+
+    async logout(req, res) {
+        if (req.session.user) {
+            res.clearCookie("user");
+            res.status(200).json({isAuth: false});
+        }
+    }
+
+
 }
 
 module.exports = new UserController()

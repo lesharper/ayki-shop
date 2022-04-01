@@ -1,4 +1,4 @@
- class ApiError extends  Error{
+class ApiError extends Error {
 
     constructor(status, message) {
         super()
@@ -10,17 +10,17 @@
         return new ApiError(404, message)
     }
 
-     INTERNAL_ERROR(message) {
+    INTERNAL_ERROR(message) {
         return new ApiError(500, message)
     }
 
-     FORBIDEN(message) {
+    FORBIDEN(message) {
         return new ApiError(403, message)
     }
 
-     UNAUTHORIZED(message) {
-         return new ApiError(401, message)
-     }
+    UNAUTHORIZED(message) {
+        return new ApiError(401, message)
+    }
 
 }
 
