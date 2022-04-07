@@ -11,7 +11,7 @@ export const registrationSchema = Yup.object().shape({
     password: Yup.string()
         .required('Пароль обязателен')
         .min(5, 'Не менее пяти символов'),
-    gender: Yup.string()
+    sex: Yup.string()
         .required('Необходимо выбрать пол')
 })
 

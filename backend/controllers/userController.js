@@ -5,8 +5,8 @@ const bcrypt = require('bcrypt')
 class UserController {
 
     async registration(req, res, next) {
-        const {name, email, password, gender} = req.body
-        const gender_id = gender === 'Мужчина' ? 1 : 2
+        const {name, email, password, sex} = req.body
+        const sex_id = sex === 'Мужчина' ? 1 : 2
         if (!email || !password)
             return next(ApiError.BAD_REQUEST('Некорректная почта или пароль'))
 
@@ -16,7 +16,7 @@ class UserController {
             return next(ApiError.BAD_REQUEST('Пользователь уже существует'))
 
         const hashPassword = await bcrypt.hash(password, 5)
-        const user = await userService.create(name, email, hashPassword, gender_id)
+        const user = await userService.create(name, email, hashPassword, sex_id)
         return res.json({message: 'Аккаунт создан'})
     }
 

@@ -1,5 +1,5 @@
 CREATE DATABASE shop;
-\CONNECT shop;
+\connect shop;
 
 -- Создание таблиц --
 
@@ -8,15 +8,11 @@ CREATE TABLE roles (
     role VARCHAR(25) NOT NULL
 );
 
-CREATE TABLE genders (
+CREATE TABLE sex (
     id SMALLSERIAL NOT NULL PRIMARY KEY,
-    gender VARCHAR(25) NOT NULL
+    sex VARCHAR(25) NOT NULL
 );
 
-CREATE TABLE sales (
-    id BIGSERIAL NOT NULL PRIMARY KEY,
-    discount INTEGER NOT NULL
-);
 
 CREATE TABLE users (
     id BIGSERIAL NOT NULL PRIMARY KEY,
@@ -25,9 +21,9 @@ CREATE TABLE users (
     password VARCHAR(300) NOT NULL,
     balance NUMERIC(9,2) DEFAULT 0.00,
     role_id INTEGER  NOT NULL DEFAULT 2,
-    gender_id INTEGER NOT NULL,
+    sex_id INTEGER NOT NULL,
     FOREIGN KEY (role_id) REFERENCES roles (id) ON DELETE CASCADE,
-    FOREIGN KEY (gender_id) REFERENCES genders (id) ON DELETE CASCADE
+    FOREIGN KEY (sex_id) REFERENCES sex (id) ON DELETE CASCADE
 );
 
 CREATE TABLE products (
@@ -35,8 +31,16 @@ CREATE TABLE products (
     title VARCHAR(40) NOT NULL,
     description TEXT NOT NULL,
     price NUMERIC(9,2) NOT NULL,
-    gender_id INTEGER NOT NULL,
-    FOREIGN KEY (gender_id) REFERENCES genders (id) ON DELETE CASCADE
+    sex_id INTEGER NOT NULL,
+    FOREIGN KEY (sex_id) REFERENCES sex (id) ON DELETE CASCADE
+);
+
+CREATE TABLE sales (
+    id BIGSERIAL NOT NULL PRIMARY KEY,
+    title VARCHAR(40) NOT NULL,
+    discount INTEGER NOT NULL,
+    product_id INTEGER NOT NULL,
+    FOREIGN KEY (product_id) REFERENCES products (id) ON DELETE CASCADE
 );
 
 CREATE TABLE categories (
@@ -46,15 +50,6 @@ CREATE TABLE categories (
     FOREIGN KEY (product_id) REFERENCES products (id) ON DELETE CASCADE
 );
 
-CREATE TABLE sales_products (
-    id SMALLSERIAL NOT NULL PRIMARY KEY,
-    start_date DATE NOT NULL,
-    end_date DATE NOT NULL,
-    sale_id INTEGER NOT NULL,
-    product_id INTEGER NOT NULL,
-    FOREIGN KEY (sale_id) REFERENCES sales (id) ON DELETE CASCADE,
-    FOREIGN KEY (product_id) REFERENCES products (id) ON DELETE CASCADE
-);
 
 CREATE TABLE photos (
     id SMALLSERIAL NOT NULL PRIMARY KEY,
@@ -63,18 +58,21 @@ CREATE TABLE photos (
     FOREIGN KEY (product_id) REFERENCES products (id) ON DELETE CASCADE
 );
 
-CREATE TABLE product_size (
+CREATE TABLE size (
     id SMALLSERIAL NOT NULL PRIMARY KEY,
-    size VARCHAR(5) NOT NULL,
-    quantity INTEGER NOT NULL  DEFAULT 100,
+    size VARCHAR(5) NOT NULL
+);
+
+CREATE TABLE product_size (
     product_id INTEGER NOT NULL,
-    FOREIGN KEY (product_id) REFERENCES products (id) ON DELETE CASCADE
+    size_id INTEGER NOT NULL,
+    FOREIGN KEY (product_id) REFERENCES products (id) ON DELETE CASCADE,
+    FOREIGN KEY (size_id) REFERENCES size (id) ON DELETE CASCADE
 );
 
 CREATE TABLE basket (
     user_id INTEGER NOT NULL,
     product_id INTEGER NOT NULL,
-    quantity INTEGER NOT NULL DEFAULT 1,
     PRIMARY KEY(user_id, product_id),
     FOREIGN KEY (user_id) REFERENCES users (id) ON DELETE CASCADE,
     FOREIGN KEY (product_id) REFERENCES products (id) ON DELETE CASCADE
@@ -89,10 +87,10 @@ CREATE TABLE favorites (
 );
 
 CREATE TABLE feedbacks (
-    review TEXT NOT NULL,
-    rating INTEGER NOT NULL,
     user_id INTEGER NOT NULL,
     product_id INTEGER NOT NULL,
+    review TEXT NOT NULL,
+    rating INTEGER NOT NULL,
     PRIMARY KEY(user_id, product_id),
     FOREIGN KEY (user_id) REFERENCES users (id) ON DELETE CASCADE,
     FOREIGN KEY (product_id) REFERENCES products (id) ON DELETE CASCADE
@@ -109,7 +107,8 @@ CREATE TABLE orders (
     FOREIGN KEY (product_id) REFERENCES products (id) ON DELETE CASCADE
 );
 
-
+INSERT INTO roles (role) VALUES ('клиент'),('администратор');
+INSERT INTO sex (sex) VALUES ('мужчина'),('женщина');
 
 psql \! chcp 1251
 set client_encoding='win1251';

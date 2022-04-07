@@ -3,10 +3,10 @@ const config = require("../config.json");
 
 class UserService {
 
-    async create(name, email, password, gender_id) {
+    async create(name, email, password, sex_id) {
         const query = {
-            text: 'INSERT INTO users (name, email, password, gender_id) values ($1, $2, $3, $4) RETURNING *',
-            values: [name, email, password, gender_id]
+            text: 'INSERT INTO users (name, email, password, sex_id) values ($1, $2, $3, $4) RETURNING *',
+            values: [name, email, password, sex_id]
         }
         try {
             const res = await db.query(query)
@@ -33,7 +33,7 @@ class UserService {
 
     }
 
-    async update(id, name, email, password, gender_id) {
+    async update(id, name, email, password, sex_id) {
 
     }
 
