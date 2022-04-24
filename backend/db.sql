@@ -8,11 +8,14 @@ CREATE TABLE roles (
     role VARCHAR(25) NOT NULL
 );
 
+INSERT INTO roles (role) VALUES ('клиент'),('администратор');
+
 CREATE TABLE sex (
     id SMALLSERIAL NOT NULL PRIMARY KEY,
     sex VARCHAR(25) NOT NULL
 );
 
+INSERT INTO sex (sex) VALUES ('мужчина'),('женщина');
 
 CREATE TABLE users (
     id BIGSERIAL NOT NULL PRIMARY KEY,
@@ -26,30 +29,42 @@ CREATE TABLE users (
     FOREIGN KEY (sex_id) REFERENCES sex (id) ON DELETE CASCADE
 );
 
+
+CREATE TABLE categories (
+    id SMALLSERIAL NOT NULL PRIMARY KEY,
+    category VARCHAR(50) NOT NULL
+);
+
+CREATE TABLE subcategories (
+    id SMALLSERIAL NOT NULL PRIMARY KEY,
+    subcategory VARCHAR(50) NOT NULL,
+    category_id INTEGER NOT NULL,
+    FOREIGN KEY (category_id) REFERENCES categories (id) ON DELETE CASCADE
+);
+
 CREATE TABLE products (
     id BIGSERIAL NOT NULL PRIMARY KEY,
     title VARCHAR(40) NOT NULL,
     description TEXT NOT NULL,
     price NUMERIC(9,2) NOT NULL,
+    category_id INTEGER NOT NULL,
     sex_id INTEGER NOT NULL,
-    FOREIGN KEY (sex_id) REFERENCES sex (id) ON DELETE CASCADE
+    FOREIGN KEY (sex_id) REFERENCES sex (id) ON DELETE CASCADE,
+    FOREIGN KEY (category_id) REFERENCES categories (id) ON DELETE CASCADE
 );
 
 CREATE TABLE sales (
     id BIGSERIAL NOT NULL PRIMARY KEY,
     title VARCHAR(40) NOT NULL,
-    discount INTEGER NOT NULL,
-    product_id INTEGER NOT NULL,
-    FOREIGN KEY (product_id) REFERENCES products (id) ON DELETE CASCADE
+    discount INTEGER NOT NULL
 );
 
-CREATE TABLE categories (
-    id SMALLSERIAL NOT NULL PRIMARY KEY,
-    category VARCHAR(50) NOT NULL,
+CREATE TABLE product_sale (
     product_id INTEGER NOT NULL,
-    FOREIGN KEY (product_id) REFERENCES products (id) ON DELETE CASCADE
+    sale_id INTEGER NOT NULL,
+    FOREIGN KEY (product_id) REFERENCES products (id) ON DELETE CASCADE,
+    FOREIGN KEY (sale_id) REFERENCES sales (id) ON DELETE CASCADE
 );
-
 
 CREATE TABLE photos (
     id SMALLSERIAL NOT NULL PRIMARY KEY,
@@ -100,15 +115,19 @@ CREATE TABLE orders (
     id BIGSERIAL NOT NULL PRIMARY KEY,
     city VARCHAR(50) NOT NULL,
     address VARCHAR(200) NOT NULL,
-    delivery_date DATE NOT NULL DEFAULT (NOW()+interval '10 day'),
+    delivery_date DATE NOT NULL DEFAULT (NOW()+interval '10 day')
+);
+
+CREATE TABLE product_order (
     user_id INTEGER NOT NULL,
     product_id INTEGER NOT NULL,
+    order_id INTEGER NOT NULL,
     FOREIGN KEY (user_id) REFERENCES users (id) ON DELETE CASCADE,
+    FOREIGN KEY (order_id) REFERENCES orders (id) ON DELETE CASCADE,
     FOREIGN KEY (product_id) REFERENCES products (id) ON DELETE CASCADE
 );
 
-INSERT INTO roles (role) VALUES ('клиент'),('администратор');
-INSERT INTO sex (sex) VALUES ('мужчина'),('женщина');
+
 
 psql \! chcp 1251
 set client_encoding='win1251';

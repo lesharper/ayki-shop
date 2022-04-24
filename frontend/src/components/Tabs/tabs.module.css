@@ -1,0 +1,24 @@
+.tabs {
+    @apply
+    flex h-full z-10
+}
+
+.tabs_item {
+    @apply
+    flex items-center h-full justify-center p-6 bg-black cursor-default border-b-2 border-black
+}
+
+.tabs_item_active {
+    @apply
+    flex items-center h-full justify-center p-6 bg-zinc-700 cursor-default duration-150 border-b-2 border-yellow-400
+}
+
+.tabs_dropdown {
+    @apply
+    absolute top-20 left-0 bg-zinc-900 w-full min-h-[300px] flex justify-start
+}
+
+.tabs_link {
+    @apply
+    text-xl p-7
+}

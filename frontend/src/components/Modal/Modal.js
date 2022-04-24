@@ -1,18 +1,44 @@
 import React from 'react';
+import styles from "./modal.module.css"
+import {AnimatePresence, motion} from "framer-motion";
+
+
+const modalVariants = {
+    hidden: {
+        y: 200,
+        opacity: 0,
+        transition: {duration: 0.1}
+    },
+    visible: {
+        y: 0,
+        opacity: 1,
+        transition: {duration: 0.1}
+
+    },
+    exit: {
+        scale: 0,
+        opacity: 0,
+        transition: {duration: 0.3}
+    }
+}
 
 const Modal = ({active, setActive, children}) => {
     return (
-        <div className={active ?
-            "flex h-screen w-screen fixed top-0 left-0 items-center justify-center  opacity-100 pointer-events-auto duration-300 z-10"
-            : " flex h-screen w-screen fixed top-0 left-0 items-center justify-center opacity-0 pointer-events-none"
-        } onClick={() => setActive(false)}>
-            <div
-                className={active ? "scale-100" : "flex justify-center items-center p-16 rounded-md bg-white scale-50 transition-all duration-75 h-28 w-56"}
-                onClick={e => e.stopPropagation()}
-            >
-                {children}
-            </div>
-        </div>
+        <AnimatePresence onExitComplete={() => setActive(false)}>
+            {
+                active &&
+                <motion.div className={styles.modal} onClick={() => setActive(false)}
+                            variants={modalVariants} initial='hidden' animate='visible' exit='exit'  >
+                    <div
+                        className={styles.modal_content}
+                        onClick={e => e.stopPropagation()}
+                    >
+                        {children}
+                    </div>
+
+                </motion.div>
+            }
+        </AnimatePresence>
     );
 }
 

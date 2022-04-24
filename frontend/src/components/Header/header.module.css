@@ -11,13 +11,12 @@
 
 .navbar {
     @apply
-    flex justify-around items-center h-full w-[300px]
+    flex justify-around items-center h-full w-[400px]
 }
 
 .navbar_item {
     @apply
     flex h-full p-4 items-center cursor-pointer hover:bg-zinc-700 duration-150
-    hover:border-b-4 border-yellow-400
 }
 
 

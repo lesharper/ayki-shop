@@ -18,5 +18,22 @@ export const signIn = async (data) => {
         return response.data
     } catch (err) {
         console.log(err)
+    } finally {
+        window.location.reload()
+    }
+
+}
+
+export const auth = async () => {
+    try {
+        const response = await axios.get(`${BASE_URL}/api/user/auth`)
+        return response.data
+    } catch (err) {
+        console.log(err)
     }
 }
+
+export const logout = async () => {
+    await axios.get(`${BASE_URL}/api/user/logout`)
+    window.location.reload()
+};
