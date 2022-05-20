@@ -33,6 +33,15 @@ export const auth = async () => {
     }
 }
 
+export const updateBalance = async (data) => {
+    try {
+        const response = await axios.put(`${BASE_URL}/api/user/balance`, data)
+        return response.data
+    } catch (err) {
+        console.log(err)
+    }
+}
+
 export const logout = async () => {
     await axios.get(`${BASE_URL}/api/user/logout`)
     window.location.reload()

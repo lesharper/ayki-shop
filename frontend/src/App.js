@@ -6,6 +6,8 @@ import {auth} from "./requests/user";
 import {useSetRecoilState} from "recoil";
 import {isAuth, userAtom} from "./store/atoms/user";
 import Catalog from "./pages/Catalog";
+import Profile from "./pages/Profile";
+import Admin from "./pages/Admin";
 
 const App = () => {
 
@@ -28,6 +30,8 @@ const App = () => {
             <Routes>
                 <Route path="/" element={<Layout/>}>
                     <Route path="/" element={<Home/>}/>
+                    <Route path="/profile" element={<Profile/>}/>
+                    <Route path="/admin" element={<Admin/>}/>
                     <Route path="/catalog" element={<Catalog/>}/>
                     <Route path="/catalog/:query" element={<Catalog/>}/>
                 </Route>

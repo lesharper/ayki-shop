@@ -8,8 +8,8 @@ const Home = () => {
     return (
         <div className="min-h-screen">
             <Banner/>
-            <div className="flex justify-center w-full">
-                <div className="w-[1000px] flex justify-around">
+            <div className="flex justify-center w-full my-20">
+                <div className="w-[1000px] flex justify-around ">
                     <RedirectButton text="Для него" image={man}/>
                     <RedirectButton text="Для нее" image={woman}/>
                 </div>

@@ -1,0 +1,21 @@
+.form {
+    @apply
+    flex flex-col justify-center items-center bg-zinc-700 h-[200px] w-[300px] rounded-md border-2 border-black
+}
+
+.title {
+    @apply
+    text-xl
+}
+
+.input {
+    @apply
+    outline-none w-3/4 m-4 p-2 text-black rounded-md
+}
+
+.btn {
+    @apply
+    bg-yellow-400 p-2 w-3/4 rounded-md text-xl text-black
+    hover:bg-yellow-500
+    disabled:bg-gray-400
+}

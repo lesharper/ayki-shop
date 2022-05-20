@@ -1,6 +1,6 @@
 .banner {
     @apply
-    flex h-[550px] w-full bg-yellow-400 justify-between items-center shadow-md mb-20
+    flex h-[550px] w-full bg-yellow-400 justify-between items-center shadow-md
 }
 
 .text {

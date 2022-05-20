@@ -15,11 +15,18 @@ export const registrationSchema = Yup.object().shape({
         .required('Необходимо выбрать пол')
 })
 
-export const loginSchema = Yup.object().shape({
+export const loginSchema =  Yup.object().shape({
     email: Yup.string()
         .required('Почта обязательна')
         .email('Некорректная почта'),
     password: Yup.string()
         .required('Пароль обязателен')
         .min(5, 'Не менее пяти символов'),
+})
+
+export const balanceSchema =  Yup.object().shape({
+    balance: Yup.number()
+        .required('Баланс обязательна')
+        .min(1, 'Значение не меньше 1')
+        .positive('Некорректное число')
 })

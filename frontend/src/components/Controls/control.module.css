@@ -1,0 +1,38 @@
+.form {
+    @apply
+   flex flex-col  justify-evenly items-center h-[430px] w-[600px] bg-zinc-700 rounded-md
+}
+
+.title {
+    @apply
+    text-yellow-400 text-xl
+}
+.input {
+    @apply
+    h-10 w-2/4 p-2 outline-none rounded-md border-2
+}
+
+.textarea {
+    @apply
+    w-2/4 p-2 resize-none outline-none rounded-md border-2
+}
+
+.select {
+    @apply
+    flex items-center w-2/4 outline-none p-3 text-yellow-400 bg-black rounded-md
+}
+
+.select > option {
+    @apply
+    p-3
+}
+
+.error {
+    @apply
+    flex justify-start w-2/4 text-red-500 text-[15px]
+}
+
+.btn {
+    @apply
+    bg-yellow-400 h-11 w-2/4 rounded-md
+}

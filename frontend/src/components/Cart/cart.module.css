@@ -1,0 +1,9 @@
+.cart {
+    @apply
+    fixed flex justify-center items-center top-0 h-full w-full bg-zinc-200 z-10 text-black
+}
+
+.icon {
+    @apply
+    absolute h-8 cursor-pointer top-10 right-10
+}

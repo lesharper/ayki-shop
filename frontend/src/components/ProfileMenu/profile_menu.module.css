@@ -1,0 +1,27 @@
+.container {
+    @apply
+    flex justify-evenly items-center w-[150px] h-full bg-zinc-700 duration-100
+    hover:bg-zinc-600 duration-100
+
+}
+
+.avatar {
+    @apply
+    flex justify-center items-center w-[65px] h-[65px] rounded-full bg-black text-xl shadow-md text-yellow-400 font-bold
+}
+
+.icon {
+    @apply
+    h-7 text-black cursor-pointer
+}
+
+.menu {
+    @apply
+    flex flex-col z-10 absolute w-[200px] bg-yellow-500 top-20 right-0 shadow-md
+}
+
+.menu > a {
+    @apply
+    flex items-center h-16 w-full cursor-pointer p-5 duration-100 text-black text-xl
+    hover:bg-yellow-600 duration-100
+}

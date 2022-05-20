@@ -28,8 +28,8 @@ const SignUp = () => {
             <input type="text" className={styles.field} {...register('password')} placeholder="Пароль"/>
             <span className={styles.error}>{errors?.password?.message}</span>
             <select className={styles.field} {...register('sex')}>
-                <option>Мужчина</option>
-                <option>Женщина</option>
+                <option value='1'>Мужчина</option>
+                <option value='2'>Женщина</option>
             </select>
             <button type="submit" className={styles.button}>Отправить</button>
         </form>

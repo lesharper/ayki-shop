@@ -1,11 +1,10 @@
-const knex = require('../db/knex')
+const knex = require("../db/knex");
 
-class UserService {
 
-    async create(name, email, password, sex_id) {
+class ProductService {
+    async add (product) {
         try {
-            const rows = await knex('users').insert({name, email, password, sex_id}).returning('*')
-            return rows[0]
+            return knex('products').insert(product)
         } catch (err) {
             console.log(err.stack)
         }
@@ -13,7 +12,7 @@ class UserService {
 
     async findByOption(option) {
         try {
-            return knex('users').where(option).first()
+            return knex('products').where(option).first()
         } catch (err) {
             console.log(err.stack)
         }
@@ -21,15 +20,15 @@ class UserService {
 
     async getAll() {
         try {
-            return knex('users')
+            return knex('categories').innerJoin('products', 'products.category_id', 'categories.id')
         } catch (err) {
             console.log(err.stack)
         }
     }
 
-    async delete(id) {
+    async delete (id) {
         try {
-            return knex('users').where({id}).del()
+            return knex('products').where({id}).del()
         } catch (err) {
             console.log(err.stack)
         }
@@ -37,12 +36,11 @@ class UserService {
 
     async update(id, data) {
         try {
-            return knex('users').where({id}).update(data)
+            return knex('products').where({id}).update(data)
         } catch (err) {
             console.log(err.stack)
         }
     }
-
 }
 
-module.exports = new UserService()
+module.exports = new ProductService()

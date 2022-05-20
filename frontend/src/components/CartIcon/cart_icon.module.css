@@ -1,0 +1,10 @@
+.container {
+    @apply
+    flex justify-center items-center h-full w-[100px] bg-zinc-700 cursor-pointer duration-100
+    hover:bg-zinc-600 duration-100
+}
+
+.icon {
+    @apply
+    h-7 cursor-pointer
+}
