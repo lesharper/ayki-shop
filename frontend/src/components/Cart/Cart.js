@@ -2,6 +2,7 @@ import React from 'react';
 import {AnimatePresence, motion} from "framer-motion";
 import styles from "./cart.module.css"
 import {XIcon} from "@heroicons/react/solid";
+import Loader from "../Loader/Loader";
 
 const Cart = ({openCart, setOpenCart}) => {
 

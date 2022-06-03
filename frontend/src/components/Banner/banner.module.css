@@ -1,13 +1,14 @@
 .banner {
     @apply
-    flex h-[550px] w-full bg-yellow-400 justify-between items-center shadow-md
+    flex h-screen w-full bg-yellow-400 justify-between items-center shadow-md
 }
 
 .text {
     @apply
-    flex flex-col ml-72 justify-center text-center w-full text-2xl
+    flex flex-col ml-72 justify-center text-center w-full text-4xl
 }
+
 .image {
     @apply
-    flex h-[500px] object-cover
+    flex h-[550px] object-cover
 }

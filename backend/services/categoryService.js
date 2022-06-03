@@ -21,6 +21,9 @@ class CategoryService {
     async getAll() {
         try {
             return knex('categories')
+                .leftJoin('subcategories', 'subcategories.category_id', 'categories.id')
+                .select(['categories.*', knex.raw('ARRAY_AGG(subcategories.subcategory) as subcategories')])
+                .groupBy('categories.id')
         } catch (err) {
             console.log(err.stack)
         }

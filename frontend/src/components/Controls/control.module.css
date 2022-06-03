@@ -1,38 +1,43 @@
 .form {
     @apply
-   flex flex-col  justify-evenly items-center h-[430px] w-[600px] bg-zinc-700 rounded-md
+   flex flex-col  justify-evenly items-center p-20 bg-zinc-700 rounded-md
 }
 
 .title {
     @apply
-    text-yellow-400 text-xl
+    flex w-full text-yellow-400 text-xl mb-4
 }
 .input {
     @apply
-    h-10 w-2/4 p-2 outline-none rounded-md border-2
+    h-[50px] w-[350px] p-3 outline-none rounded-md border-2
 }
 
 .textarea {
     @apply
-    w-2/4 p-2 resize-none outline-none rounded-md border-2
+    w-[350px] p-2 resize-none outline-none rounded-md border-2
 }
 
 .select {
     @apply
-    flex items-center w-2/4 outline-none p-3 text-yellow-400 bg-black rounded-md
+    flex items-center w-[350px] outline-none p-3 text-yellow-400 bg-black rounded-md
 }
 
-.select > option {
+.file {
     @apply
-    p-3
+    flex justify-center items-center bg-yellow-400 h-[100px] w-[350px] m-2 font-bold text-xl cursor-pointer
 }
 
 .error {
     @apply
-    flex justify-start w-2/4 text-red-500 text-[15px]
+    flex justify-start w-full text-red-500 text-[15px] p-2
+}
+
+.successful {
+    @apply
+    flex justify-start w-full text-green-500 text-[15px] p-2
 }
 
 .btn {
     @apply
-    bg-yellow-400 h-11 w-2/4 rounded-md
+    bg-yellow-400 h-11 w-[200px] rounded-md m-2
 }

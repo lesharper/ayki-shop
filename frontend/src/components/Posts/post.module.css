@@ -1,0 +1,30 @@
+.container {
+    @apply
+    flex flex-col items-center min-h-screen w-full p-10 bg-black
+}
+
+
+.post {
+    @apply
+    flex justify-between h-[300px] w-[1200px] mb-20 mt-20
+}
+
+.image {
+    @apply
+    h-full w-[300px] object-cover
+}
+
+.text_wrapper {
+    @apply
+    flex flex-col justify-center text-left p-10 h-full w-[700px] text-white
+}
+
+.title {
+    @apply
+    text-4xl font-bold mb-5
+}
+
+.description {
+    @apply
+    text-2xl
+}

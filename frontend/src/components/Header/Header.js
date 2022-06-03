@@ -4,7 +4,7 @@ import SearchBar from "../SearchBar/SearchBar";
 import Modal from "../Modal/Modal";
 import SignUp from "../Verify/SignUp";
 import SignIn from "../Verify/SignIn";
-import Tabs from "../Tabs/Tabs";
+import Tabs from "../NavTabs/NavTabs";
 import {useRecoilValue} from "recoil";
 import {isAuth, userAtom} from "../../store/atoms/user";
 import {Link} from "react-router-dom";
@@ -22,8 +22,6 @@ const Header = () => {
     const user = useRecoilValue(userAtom)
 
     const userBalance = () => parseFloat(user.balance)
-
-
     const swapHandler = () => setSwap(!swap)
 
     const link = swap ? 'Я тут впервые' : 'У меня уже есть аккаунт!'
@@ -32,13 +30,10 @@ const Header = () => {
         <div className={styles.container}>
             <Link to="/" className={styles.logo}>AYKI</Link>
             <Tabs/>
-
             <div className="grow"/>
             <div className={styles.details}>
-
                 <SearchBar/>
                 {!auth && <span className={styles.navbar_item} onClick={() => setModal(true)}>ВОЙТИ</span>}
-
                 {auth &&
                     <div className="flex justify-end items-center h-full">
                         <CartIcon setOpenCart={setOpenCart}/>
@@ -46,7 +41,6 @@ const Header = () => {
                         <ProfileMenu name={user?.name}/>
                     </div>
                 }
-
             </div>
             <Cart openCart={openCart} setOpenCart={setOpenCart}/>
             <Modal active={modal} setActive={setModal}>

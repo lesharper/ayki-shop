@@ -21,7 +21,7 @@ const SignIn = () => {
             <span className={styles.title}>{response ? response.message : 'Авторизация'}</span>
             <input type="text" className={styles.field} {...register('email')} placeholder="Почта"/>
             <span className={styles.error}>{errors?.email?.message}</span>
-            <input type="text" className={styles.field} {...register('password')} placeholder="Пароль"/>
+            <input type="password" className={styles.field} {...register('password')} placeholder="Пароль"/>
             <span className={styles.error}>{errors?.password?.message}</span>
             <button type="submit" className={styles.button}>Войти</button>
         </form>

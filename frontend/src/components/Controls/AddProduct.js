@@ -1,26 +1,33 @@
-import React, {useEffect, useState} from 'react';
+import React, {startTransition, useEffect, useState} from 'react';
 import {useForm} from "react-hook-form";
 import {yupResolver} from "@hookform/resolvers/yup/dist/yup";
 import {getAllCategories} from "../../requests/category";
 import styles from "./control.module.css"
 import {productSchema} from "./schema";
 import {addProduct} from "../../requests/product";
+import {useRecoilRefresher_UNSTABLE, useRecoilValue} from "recoil";
+import {categoriesSelector} from "../../store/selectors/categories";
+import {productsSelector} from "../../store/selectors/products";
 
 const AddProduct = () => {
 
-    const {register, formState: {errors}, handleSubmit} = useForm({
+    const {register, formState: {errors}, handleSubmit, reset} = useForm({
         mode: "onTouched",
         resolver: yupResolver(productSchema)
     })
 
     const [response, setResponse] = useState(null)
-    const [categories, setCategories] = useState([])
+    const categories = useRecoilValue(categoriesSelector)
     const [price, setPrice] = useState(1)
 
+    const refreshProducts = useRecoilRefresher_UNSTABLE(productsSelector);
     const onSubmit =  async (data) => {
         const response = await addProduct(data)
+        startTransition(() => {
+            refreshProducts()
+        })
         setResponse(response)
-        console.log(response)
+        reset()
     }
 
     const priceHandler = ({target}) => {
@@ -30,14 +37,6 @@ const AddProduct = () => {
         })
     }
 
-    useEffect(() => {
-        const getCategories = async () => {
-            const response = await getAllCategories()
-            setCategories(response)
-        }
-        getCategories()
-
-    }, [])
 
     return (
         <form className={styles.form} onSubmit={handleSubmit(onSubmit)}>
@@ -58,6 +57,11 @@ const AddProduct = () => {
                 <option value='1'>Мужчина</option>
                 <option value='2'>Женщина</option>
             </select>
+
+            {/*<label className={styles.file}>*/}
+            {/*    <span>Загрузить фото</span>*/}
+            {/*    <input type="file" {...register('photo')} className="hidden"/>*/}
+            {/*</label>*/}
 
             <button className={styles.btn}>Создать</button>
         </form>

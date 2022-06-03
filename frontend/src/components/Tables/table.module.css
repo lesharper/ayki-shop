@@ -1,0 +1,38 @@
+
+
+.title {
+    @apply
+    flex text-3xl font-bold my-5
+}
+
+.table {
+    @apply
+    bg-white w-full border-2 border-black
+}
+
+.header {
+    @apply
+    bg-black h-32 text-xl text-white
+}
+
+.body {
+    @apply
+    text-center
+}
+
+.body > tr > td{
+    @apply
+    h-[150px] w-[200px] border-b-2 border-black text-xl
+}
+
+.control {
+    @apply
+    flex justify-end items-center h-[100px]
+}
+
+
+.control > button {
+    @apply
+    flex bg-black text-white py-5 px-16 text-xl rounded-md
+    hover:bg-zinc-800
+}

@@ -1,0 +1,4 @@
+.filter {
+    @apply
+    flex flex-col  sticky top-5 mt-5 bg-yellow-400 p-7 h-fit rounded-md w-full m-3
+}

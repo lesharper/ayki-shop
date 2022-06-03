@@ -1,6 +1,6 @@
 .container {
     @apply
-    flex h-20 bg-black items-center text-white
+    flex h-24 bg-black items-center text-white
 
 }
 

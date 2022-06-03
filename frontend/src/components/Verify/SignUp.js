@@ -25,7 +25,7 @@ const SignUp = () => {
             <span className={styles.error}>{errors?.name?.message}</span>
             <input type="text" className={styles.field} {...register('email')} placeholder="Почта"/>
             <span className={styles.error}>{errors?.email?.message}</span>
-            <input type="text" className={styles.field} {...register('password')} placeholder="Пароль"/>
+            <input type="password" className={styles.field} {...register('password')} placeholder="Пароль"/>
             <span className={styles.error}>{errors?.password?.message}</span>
             <select className={styles.field} {...register('sex')}>
                 <option value='1'>Мужчина</option>

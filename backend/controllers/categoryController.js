@@ -3,12 +3,13 @@ const categoryService = require("../services/categoryService")
 
 
 class CategoryController {
+
     async addCategory(req, res, next) {
         try {
             const {category} = req.body
             const candidate = await categoryService.findByCategory(category)
             if (candidate)
-                return next(ApiError.BAD_REQUEST('Категория уже существует'))
+                return res.json({error: 'Категория уже существует'})
 
             await categoryService.add({category})
             return res.json({message: 'Категория добавлена'})

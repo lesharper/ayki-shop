@@ -18,20 +18,20 @@ const ProfileMenu = ({name}) => {
 
     const menuVariants = {
         hidden: {
-            x: -20,
             opacity: 0,
-            transition: {duration: 0.5}
+            transition: {duration: 0.3}
         },
         visible: {
-            x: 0,
             opacity: 1,
-            transition: {duration: 0.5}
+            transition: {duration: 0.3}
 
         },
         exit: {
-            x: -20,
             opacity: 0,
-            transition: {duration: 0.5}
+            transition: {
+                duration: 0.3,
+                delay: 0.2,
+            }
         }
     }
 
@@ -44,10 +44,14 @@ const ProfileMenu = ({name}) => {
             x: 0,
             opacity: 1,
             transition: {
-                duration: 0.5,
+                duration: 0.3,
                 delay: i * 0.2
             }
-        })
+        }),
+        exit: {
+            x: 70,
+            opacity: 0,
+        }
     }
 
     const logoutHandler = () => {
