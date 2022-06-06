@@ -10,9 +10,9 @@ class CategoryService {
         }
     }
 
-    async findByCategory (category) {
+    async findByCategory (option) {
         try {
-            return knex('categories').where({category}).first()
+            return knex('categories').where(option).first()
         } catch (err) {
             console.log(err.stack)
         }
@@ -22,7 +22,7 @@ class CategoryService {
         try {
             return knex('categories')
                 .leftJoin('subcategories', 'subcategories.category_id', 'categories.id')
-                .select(['categories.*', knex.raw('ARRAY_AGG(subcategories.subcategory) as subcategories')])
+                .select('categories.*', knex.raw('ARRAY_AGG(subcategories.id) as subcategories'))
                 .groupBy('categories.id')
         } catch (err) {
             console.log(err.stack)

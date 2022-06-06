@@ -8,6 +8,7 @@ const FilterPanel = () => {
 
     const categories = useRecoilValue(categoriesSelector)
     const categorySwitchers = categories.map((category, key) =>  <Switcher key={key} category={category.category}/>)
+
     return (
         <div className={styles.filter}>
             <Switcher category='Для мужчин'/>

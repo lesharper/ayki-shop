@@ -18,30 +18,33 @@ const ProfileMenu = ({name}) => {
 
     const menuVariants = {
         hidden: {
+            height: 0,
             opacity: 0,
             transition: {duration: 0.3}
         },
         visible: {
+            height: "auto",
             opacity: 1,
             transition: {duration: 0.3}
 
         },
         exit: {
+            height: 0,
             opacity: 0,
             transition: {
                 duration: 0.3,
-                delay: 0.2,
+                delay: 0.3,
             }
         }
     }
 
     const linkVariants = {
         hidden: {
-            x: 70,
+            y: -70,
             opacity: 0,
         },
         visible: (i) => ({
-            x: 0,
+            y: 0,
             opacity: 1,
             transition: {
                 duration: 0.3,
@@ -49,7 +52,6 @@ const ProfileMenu = ({name}) => {
             }
         }),
         exit: {
-            x: 70,
             opacity: 0,
         }
     }
@@ -81,8 +83,8 @@ const ProfileMenu = ({name}) => {
     ]
 
     const menuClient = linksClient.map((link, key) =>
-        <Link to={link.link} onClick={link.handleClick}>
-            <motion.span key={key} variants={linkVariants} initial='hidden'
+        <Link to={link.link} onClick={link.handleClick} key={key}>
+            <motion.span variants={linkVariants} initial='hidden'
                          animate='visible' exit='exit' custom={key}>
                 {link.title}
             </motion.span>
@@ -90,8 +92,8 @@ const ProfileMenu = ({name}) => {
     )
 
     const menuAdmin = linksAdmin.map((link, key) =>
-        <Link to={link.link} onClick={link.handleClick}>
-            <motion.span key={key} variants={linkVariants} initial='hidden'
+        <Link to={link.link} onClick={link.handleClick} key={key}>
+            <motion.span  variants={linkVariants} initial='hidden'
                          animate='visible' exit='exit' custom={key}>
                 {link.title}
             </motion.span>

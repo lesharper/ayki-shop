@@ -4,7 +4,7 @@ import SearchBar from "../SearchBar/SearchBar";
 import Modal from "../Modal/Modal";
 import SignUp from "../Verify/SignUp";
 import SignIn from "../Verify/SignIn";
-import Tabs from "../NavTabs/NavTabs";
+import NavTabs from "../NavTabs/NavTabs";
 import {useRecoilValue} from "recoil";
 import {isAuth, userAtom} from "../../store/atoms/user";
 import {Link} from "react-router-dom";
@@ -29,7 +29,7 @@ const Header = () => {
     return (
         <div className={styles.container}>
             <Link to="/" className={styles.logo}>AYKI</Link>
-            <Tabs/>
+            <NavTabs/>
             <div className="grow"/>
             <div className={styles.details}>
                 <SearchBar/>

@@ -20,8 +20,19 @@ export const productSchema = Yup.object().shape({
         .required('Пол обязателен')
 })
 
-export const categorytSchema = Yup.object().shape({
+export const categorySchema = Yup.object().shape({
     category: Yup.string()
         .required('Категория обязательна')
         .min(3, 'Не меньше трех символов')
+})
+
+export const subcategorySchema = Yup.object().shape({
+    subcategory: Yup.string()
+        .required('Подкатегория обязательна')
+        .min(3, 'Не меньше трех символов')
+})
+
+export const sizeSchema = Yup.object().shape({
+    size: Yup.string()
+        .required('Размер обязателен')
 })

@@ -7,7 +7,7 @@ class CategoryController {
     async addCategory(req, res, next) {
         try {
             const {category} = req.body
-            const candidate = await categoryService.findByCategory(category)
+            const candidate = await categoryService.findByCategory({category})
             if (candidate)
                 return res.json({error: 'Категория уже существует'})
 
@@ -41,7 +41,7 @@ class CategoryController {
         try {
             const { id, category } = req.body
 
-            const candidate = await categoryService.findByCategory(category)
+            const candidate = await categoryService.findByCategory({category})
             if (candidate)
                 return next(ApiError.BAD_REQUEST('Категория уже существует'))
 

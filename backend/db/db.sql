@@ -73,16 +73,16 @@ CREATE TABLE photos (
     FOREIGN KEY (product_id) REFERENCES products (id) ON DELETE CASCADE
 );
 
-CREATE TABLE size (
+CREATE TABLE sizes (
     id SMALLSERIAL NOT NULL PRIMARY KEY,
-    size VARCHAR(5) NOT NULL
+    size VARCHAR(5) NOT NULL UNIQUE
 );
 
 CREATE TABLE product_size (
     product_id INTEGER NOT NULL,
     size_id INTEGER NOT NULL,
     FOREIGN KEY (product_id) REFERENCES products (id) ON DELETE CASCADE,
-    FOREIGN KEY (size_id) REFERENCES size (id) ON DELETE CASCADE
+    FOREIGN KEY (size_id) REFERENCES sizes (id) ON DELETE CASCADE
 );
 
 CREATE TABLE basket (

@@ -9,3 +9,17 @@
         font-family: Inter, system-ui, sans-serif;
     }
 }
+
+
+*::-webkit-scrollbar {
+    @apply
+    w-[10px]
+}
+*::-webkit-scrollbar-track {
+    @apply
+    bg-yellow-400
+}
+*::-webkit-scrollbar-thumb {
+    @apply
+    bg-black
+}

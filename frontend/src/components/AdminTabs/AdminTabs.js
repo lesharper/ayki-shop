@@ -3,6 +3,7 @@ import {Link} from "react-router-dom";
 import styles from "./admin_tabs.module.css";
 import TCategories from "../Tables/TCategories";
 import TProducts from "../Tables/TProducts";
+import TSizes from "../Tables/TSizes";
 
 const tabs = [
     {
@@ -10,8 +11,8 @@ const tabs = [
         sections: <TCategories/>
     },
     {
-        title: "Подкатегории",
-        sections: 'ku'
+        title: "Размеры",
+        sections: <TSizes/>
     },
     {
         title: "Товары",

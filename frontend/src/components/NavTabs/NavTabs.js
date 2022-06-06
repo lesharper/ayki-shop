@@ -1,34 +1,62 @@
 import React, {useState} from 'react';
 import styles from "./tabs.module.css"
 import {Link} from "react-router-dom";
-
-const navTabs = [
-    {
-        title: "НОВИНКИ",
-        sections: [{title: "Для него", link: "/catalog"},{title: "Для нее", link: "/catalog"}]
-    },
-    {
-        title: "ДЛЯ НЕГО",
-        sections: [{title: "Верхняя одежда", link: "/catalog"}, {title: "Нижняя одежда", link: "/catalog"}]
-    },
-    {
-        title: "ДЛЯ НЕЕ",
-        sections: [{title: "Верхняя одежда", link: "/catalog"}, {title: "Нижняя одежда", link: "/catalog"}]
-    },
-]
+import {useRecoilValue} from "recoil";
+import {categories_subcategoriesSelector} from "../../store/selectors/categories_subcategories";
 
 
 const NavTabs = () => {
+
+    const category_subs = useRecoilValue(categories_subcategoriesSelector)
+    const manLinks = category_subs.map((item, key) =>
+        <Link to={`/catalog/${item.category}/Он`} key={key}>
+            <li className={styles.tabs_link}>
+                {item.category}
+            </li>
+            <ul>
+                {!!item.subcategories.length && item.subcategories.map((item, key) =>
+                    <li className={styles.tabs_sublink}>{item.subcategory}</li>
+                )}
+            </ul>
+
+        </Link>
+    )
+
+    const womanLinks = category_subs.map((item, key) =>
+        <Link to={`/catalog/${item.category}/Она`} key={key}>
+            <li className={styles.tabs_link}>
+                {item.category}
+            </li>
+            <ul>
+                {!!item.subcategories.length && item.subcategories.map((item, key) =>
+                    <li className={styles.tabs_sublink}>{item.subcategory}</li>
+                )}
+            </ul>
+
+        </Link>
+    )
+
+    const navTabs = [
+        // {
+        //     title: "НОВИНКИ",
+        //     sections: <ul className={styles.tabs_ul}></ul>
+        // },
+        {
+            title: "ДЛЯ НЕГО",
+            sections: <ul className={styles.tabs_ul}>{manLinks}</ul>
+        },
+        {
+            title: "ДЛЯ НЕЕ",
+            sections: <ul className={styles.tabs_ul}>{womanLinks}</ul>
+        },
+    ]
+
     const [activeItem, setActiveItem] = useState(-1)
-
-    const tabsMenu = navTabs[activeItem]?.sections.map((section, key) => <Link to={section.link} className={styles.tabs_link} key={key}>{section.title}</Link>)
-
     const styleHandler = (key) => activeItem === key ? styles.tabs_item_active : styles.tabs_item
-
     const [openMenu, setOpenMenu] = useState(false)
     return (
         <div onMouseLeave={() => {
-            setActiveItem()
+            setActiveItem(-1)
             setOpenMenu(false)
         }} className={styles.tabs}>
             {navTabs.map((tab, key) =>
@@ -43,7 +71,7 @@ const NavTabs = () => {
                 </div>
             )}
             <div className={openMenu && styles.tabs_dropdown}>
-                {tabsMenu}
+                {navTabs[activeItem] && navTabs[activeItem].sections}
             </div>
         </div>
     );

@@ -1,26 +1,26 @@
 import React, {startTransition, useState} from 'react';
 import {useForm} from "react-hook-form";
 import {yupResolver} from "@hookform/resolvers/yup/dist/yup";
-import {categorySchema} from "./schema";
-import {addCategory} from "../../requests/category";
-import styles from "./control.module.css";
+import {sizeSchema} from "./schema";
 import {useRecoilRefresher_UNSTABLE} from "recoil";
-import {categories_subcategoriesSelector} from "../../store/selectors/categories_subcategories";
+import {categoriesSelector} from "../../store/selectors/categories";
+import styles from "./control.module.css";
+import {addSize} from "../../requests/size";
+import {sizesSelector} from "../../store/selectors/sizes";
 
-const AddCategory = () => {
-
+const AddSize = () => {
     const {register, formState: {errors}, handleSubmit, reset} = useForm({
         mode: "onTouched",
-        resolver: yupResolver(categorySchema)
+        resolver: yupResolver(sizeSchema)
     })
 
-    const refreshCategorieSubs = useRecoilRefresher_UNSTABLE(categories_subcategoriesSelector);
+    const refreshSizes = useRecoilRefresher_UNSTABLE(sizesSelector);
     const [response, setResponse] = useState(null)
 
     const onSubmit =  async (data) => {
-        const response = await addCategory(data)
+        const response = await addSize(data)
         startTransition(() => {
-            refreshCategorieSubs()
+            refreshSizes()
         })
         setResponse(response)
         reset()
@@ -29,9 +29,9 @@ const AddCategory = () => {
 
     return (
         <form className={styles.form} onSubmit={handleSubmit(onSubmit)}>
-            <span className={styles.title}>Категория</span>
-            <input className={styles.input}  type="text" {...register('category')} placeholder='Название'/>
-            {errors?.category?.message && <span className={styles.error}>{errors?.category?.message}</span>}
+            <span className={styles.title}>Размер</span>
+            <input className={styles.input}  type="text" {...register('size')} placeholder='Значение'/>
+            {errors?.size?.message && <span className={styles.error}>{errors?.size?.message}</span>}
             {response?.message && <span className={styles.successful}>{response?.message}</span>}
             {response?.error && <span className={styles.error}>{response?.error}</span>}
             <button className={styles.btn}>Создать</button>
@@ -39,4 +39,4 @@ const AddCategory = () => {
     );
 }
 
-export default AddCategory;
+export default AddSize;

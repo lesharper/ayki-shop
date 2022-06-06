@@ -1,0 +1,21 @@
+.list {
+    @apply
+    flex justify-center w-full bg-white p-5 flex-wrap content-start
+}
+
+.item {
+    @apply
+    flex flex-col w-[300px] m-5 rounded-md shadow-md duration-100 cursor-pointer
+    hover:scale-105
+}
+
+.details {
+    @apply
+    flex flex-col p-2
+}
+
+
+.details > span {
+    @apply
+    m-1
+}

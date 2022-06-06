@@ -20,3 +20,12 @@ export const getAllProducts = async () => {
         console.log(err)
     }
 }
+
+export const deleteProduct = async (id) => {
+    try {
+        const response = await axios.delete(`${BASE_URL}/api/product/remove/${id}`)
+        return response.data
+    } catch (err) {
+        console.log(err)
+    }
+}

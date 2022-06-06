@@ -8,10 +8,7 @@ const Admin = () => {
 
     return (
         <div className="flex justify-center items-center min-h-screen">
-            <Suspense fallback={<Loader/>}>
-                <AdminTabs/>
-                {/*<TCategories/>*/}
-            </Suspense>
+            <AdminTabs/>
         </div>
     );
 }

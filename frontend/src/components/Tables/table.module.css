@@ -7,32 +7,93 @@
 
 .table {
     @apply
-    bg-white w-full border-2 border-black
+    bg-white w-full
 }
 
 .header {
     @apply
-    bg-black h-32 text-xl text-white
+    bg-black h-[120px] text-xl text-white
+}
+
+
+.scroll_container {
+    @apply
+    overflow-auto max-h-[700px] border-2 border-black
 }
 
 .body {
     @apply
+     text-center
+}
+
+.wrow {
+    @apply
+    border-t-2 border-black
+}
+
+.subtitle {
+    @apply
+    bg-black text-yellow-400 text-left border-b-2 border-yellow-400 font-bold
+}
+
+.subtitle > td + td {
+    @apply
     text-center
 }
 
-.body > tr > td{
+.subtitle > td {
     @apply
-    h-[150px] w-[200px] border-b-2 border-black text-xl
+    p-10
 }
+
+.column {
+    @apply
+    h-[130px] w-[200px] text-xl break-all
+}
+
+.column_description {
+    @apply
+    h-[130px] w-[400px] text-xl break-all
+}
+
+.subcategory {
+    @apply
+    border-t-2 border-white text-xl
+}
+
+.subcategory > td{
+    @apply
+    bg-black text-white p-10
+}
+
+
 
 .control {
     @apply
     flex justify-end items-center h-[100px]
 }
 
-
 .control > button {
     @apply
     flex bg-black text-white py-5 px-16 text-xl rounded-md
     hover:bg-zinc-800
 }
+
+.scroll_container::-webkit-scrollbar {
+    @apply
+    w-[6px]
+}
+.scroll_container::-webkit-scrollbar-track {
+    @apply
+    bg-yellow-400
+}
+.scroll_container::-webkit-scrollbar-thumb {
+    @apply
+    bg-black
+}
+
+.icon {
+    @apply
+    h-7 inline-block cursor-pointer
+}
+

@@ -15,10 +15,22 @@
 
 .tabs_dropdown {
     @apply
-    absolute top-24 left-0 bg-zinc-900 w-full min-h-[300px] flex justify-start
+    absolute top-24 left-0 bg-zinc-900 w-full
+}
+
+.tabs_ul {
+    @apply
+    flex flex-col max-h-[400px] flex-wrap content-start p-10
 }
 
 .tabs_link {
     @apply
-    text-xl p-7
+    text-xl ml-10 p-3 duration-100
+    hover:text-yellow-400
+}
+
+.tabs_sublink {
+    @apply
+    text-xl text-zinc-400 ml-14 p-3 duration-100
+    hover:text-yellow-400
 }
