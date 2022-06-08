@@ -5,8 +5,8 @@ export const productSchema = Yup.object().shape({
         .required('Название обязательно')
         .min(5, 'Не меньше пяти символов')
         .max(25, 'Не больше двадцати пяти символов'),
-    // photo: Yup.mixed()
-    //     .required(),
+    photos: Yup.mixed()
+        .required(),
     description: Yup.string()
         .required('Описание обязательно')
         .min(5, 'Не меньше пяти символов'),

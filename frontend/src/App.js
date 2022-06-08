@@ -9,6 +9,8 @@ import Catalog from "./pages/Catalog";
 import Profile from "./pages/Profile";
 import Admin from "./pages/Admin";
 import Loader from "./components/Loader/Loader";
+import Product from "./pages/Product/Product";
+import Favorites from "./pages/Favorites";
 
 const App = () => {
 
@@ -32,8 +34,10 @@ const App = () => {
                 <Route path="/" element={<Layout/>}>
                     <Route path="/" element={<Home/>}/>
                     <Route path="/profile" element={<Profile/>}/>
+                    <Route path="/favorites" element={<Favorites/>}/>
                     <Route path="/admin" element={<Admin/>}/>
                     <Route path="/catalog" element={<Catalog/>}/>
+                    <Route path="/catalog/:id" element={<Product/>}/>
                     <Route path="/catalog/:query/:sex" element={<Catalog/>}/>
                 </Route>
             </Routes>

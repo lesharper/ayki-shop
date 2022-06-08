@@ -6,10 +6,12 @@ const cors = require("./middleware/corsMiddleware");
 const cookieParser = require("cookie-parser");
 const path = require("path");
 const session = require("express-session");
+const fileUpload = require('express-fileupload')
 const app = express();
 
 app.use(cors)
 app.use(express.json())
+app.use(fileUpload())
 app.use(cookieParser(config.SECRET));
 app.use(express.static(path.join(`${__dirname}/static`)));
 app.use(

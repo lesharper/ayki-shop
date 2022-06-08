@@ -1,0 +1,31 @@
+.container {
+    @apply
+    flex justify-center items-center w-[850px] h-full p-10
+}
+
+.tabs {
+    @apply
+    flex flex-col justify-center items-start h-full w-[200px] text-white text-xl
+}
+
+
+.tabs_item {
+    @apply
+    flex justify-center items-center h-[200px] w-[200px] border-2 border-transparent cursor-pointer my-1
+    hover:border-zinc-300
+}
+
+.tabs_item_active {
+    @apply
+    flex justify-center items-center  h-[200px] w-[200px] border-2 border-black cursor-pointer my-1
+}
+
+.tabs_image {
+    @apply
+    h-full w-full object-cover
+}
+
+.promo_img {
+    @apply
+    m-10 h-[700px] w-[500px] object-cover
+}

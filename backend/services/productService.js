@@ -4,7 +4,7 @@ const knex = require("../db/knex");
 class ProductService {
     async add (product) {
         try {
-            return knex('products').insert(product)
+            return knex('products').insert(product).returning('*')
         } catch (err) {
             console.log(err.stack)
         }
@@ -20,7 +20,12 @@ class ProductService {
 
     async getAll() {
         try {
-            return knex('categories').innerJoin('products', 'products.category_id', 'categories.id')
+            return knex('products')
+                .leftJoin('categories', 'products.category_id', 'categories.id')
+                .leftJoin('photos', 'photos.product_id', 'products.id')
+                .select('categories.category', knex.raw('ARRAY_AGG(photos.id) as photos'), 'products.*')
+                .groupBy('categories.category', 'products.id')
+
         } catch (err) {
             console.log(err.stack)
         }

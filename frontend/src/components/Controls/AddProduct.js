@@ -1,4 +1,4 @@
-import React, {startTransition, useEffect, useState} from 'react';
+import React, {startTransition, useEffect, useRef, useState} from 'react';
 import {useForm} from "react-hook-form";
 import {yupResolver} from "@hookform/resolvers/yup/dist/yup";
 import {getAllCategories} from "../../requests/category";
@@ -17,11 +17,12 @@ const AddProduct = () => {
     })
 
     const [response, setResponse] = useState(null)
+
     const categories = useRecoilValue(categoriesSelector)
     const [price, setPrice] = useState(1)
 
     const refreshProducts = useRecoilRefresher_UNSTABLE(productsSelector);
-    const onSubmit =  async (data) => {
+    const onSubmit = async (data) => {
         const response = await addProduct(data)
         startTransition(() => {
             refreshProducts()
@@ -41,11 +42,11 @@ const AddProduct = () => {
     return (
         <form className={styles.form} onSubmit={handleSubmit(onSubmit)}>
             <span className={styles.title}>Добавление товара</span>
-            <input className={styles.input}  type="text" {...register('title')} placeholder='Название'/>
+            <input className={styles.input} type="text" {...register('title')} placeholder='Название'/>
             <span className={styles.error}>{errors?.title?.message}</span>
-            <textarea  className={styles.textarea}  type="text" {...register('description')} placeholder='Описание'/>
+            <textarea className={styles.textarea} type="text" {...register('description')} placeholder='Описание'/>
             <span className={styles.error}>{errors?.description?.message}</span>
-            <input className={styles.input}  type="number" {...register('price')} value={price} onChange={priceHandler}/>
+            <input className={styles.input} type="number" {...register('price')} value={price} onChange={priceHandler}/>
             <span className={styles.error}>{errors?.price?.message}</span>
             <select className={styles.select}  {...register('category_id')}>
                 <option selected disabled>Выберите категорию</option>
@@ -58,11 +59,10 @@ const AddProduct = () => {
                 <option value='2'>Женщина</option>
             </select>
 
-            {/*<label className={styles.file}>*/}
-            {/*    <span>Загрузить фото</span>*/}
-            {/*    <input type="file" {...register('photo')} className="hidden"/>*/}
-            {/*</label>*/}
-
+            <label className={styles.file}>
+                <span>Загрузить фото</span>
+                <input type="file" {...register('photos')} accept="image/*" className="hidden" multiple/>
+            </label>
             <button className={styles.btn}>Создать</button>
         </form>
     );
