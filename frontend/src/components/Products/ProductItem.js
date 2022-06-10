@@ -5,7 +5,6 @@ import {Link} from "react-router-dom";
 
 const ProductItem = ({product}) => {
 
-    console.log(product)
     return (
         <Link to={`/catalog/${product.id}`} className={styles.item}>
             <img src={`${BASE_URL}/${product.photos[0].image}`} className="h-[400px] object-cover" alt="photo"/>

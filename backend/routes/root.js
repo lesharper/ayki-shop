@@ -3,6 +3,7 @@ const userRouter = require('./userRouter')
 const categoryRouter = require('./categoryRouter')
 const subcategoryRouter = require('./subcategoryRouter')
 const productRouter = require('./productRouter')
+const basketRouter = require('./basketRouter')
 const photoRouter = require('./photoRouter')
 const sizetRouter = require('./sizeRouter')
 
@@ -13,6 +14,7 @@ router.use('/category', categoryRouter)
 router.use('/subcategory', subcategoryRouter)
 router.use('/size', sizetRouter)
 router.use('/product', productRouter)
+router.use('/basket', basketRouter)
 router.use('/photo', photoRouter)
 
 module.exports = router

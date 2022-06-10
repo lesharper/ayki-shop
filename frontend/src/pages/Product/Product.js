@@ -1,18 +1,34 @@
-import React from 'react';
-import {useRecoilValue} from "recoil";
+import React, {startTransition} from 'react';
+import {useRecoilRefresher_UNSTABLE, useRecoilValue} from "recoil";
 import {productsSelector} from "../../store/selectors/products";
 import {useParams} from "react-router";
 import ImageTabs from "../../components/ImageTabs/ImageTabs";
 import {HeartIcon, ShoppingBagIcon} from "@heroicons/react/outline";
 import styles from "./product.module.css"
+import {addInBasket} from "../../requests/basket";
+import {basketSelector} from "../../store/selectors/basket";
 
 const Product = () => {
 
     const {id} = useParams()
     const products = useRecoilValue(productsSelector)
     const product = products.filter(item => item.id === id)[0]
+
+    const refreshBasket = useRecoilRefresher_UNSTABLE(basketSelector);
+
+    const addBasketHandler = async () => {
+        const response = await addInBasket({product_id: id})
+        startTransition(() => {
+            refreshBasket()
+        })
+        console.log(response)
+    }
+
+    const addFavoriteHandler = async () => {
+        console.log('Norm test')
+    }
     return (
-        <div className="flex items-center h-screen">
+        <div className={styles.page}>
 
                 <ImageTabs images={product.photos}/>
 
@@ -22,11 +38,11 @@ const Product = () => {
                    <span className={styles.description}>{product.description}</span>
 
                     <div className={styles.detail_container}>
-                        <button className={styles.btnB}>
+                        <button className={styles.btnB} onClick={addBasketHandler}>
                             <ShoppingBagIcon className={styles.icon}/>
                             В корзину
                         </button>
-                        <button className={styles.btnT}>
+                        <button className={styles.btnT} onClick={addFavoriteHandler}>
                             <HeartIcon className={styles.icon}/>
                             В избранные
                         </button>

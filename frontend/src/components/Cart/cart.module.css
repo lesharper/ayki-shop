@@ -1,9 +1,33 @@
 .cart {
     @apply
-    fixed flex justify-center items-center top-0 h-full w-full bg-zinc-200 z-10 text-black
+    fixed flex flex-col top-0 h-full w-full bg-zinc-200 z-10 text-black overflow-auto scroll-auto
 }
 
 .icon {
     @apply
-    absolute h-8 cursor-pointer top-10 right-10
+    h-8 cursor-pointer
 }
+
+
+.list {
+    @apply
+    flex flex-wrap w-[1300px]
+}
+
+.item {
+    @apply
+    flex flex-col w-[300px] m-5 rounded-md shadow-md duration-100 cursor-pointer bg-white
+    hover:scale-105
+}
+
+.details {
+    @apply
+    flex flex-col p-2
+}
+
+
+.details > span {
+    @apply
+    m-1
+}
+

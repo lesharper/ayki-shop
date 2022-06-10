@@ -1,6 +1,6 @@
 .modal {
     @apply
-    flex h-screen w-screen fixed top-0 left-0 items-center justify-center opacity-100 pointer-events-auto duration-300 z-10
+    flex h-screen w-screen fixed top-0 left-0 items-center justify-center pointer-events-auto duration-300 z-10
 }
 
 .modal_content {

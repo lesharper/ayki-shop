@@ -1,4 +1,3 @@
-const ApiError = require('../error/ApiError')
 const productService = require("../services/productService")
 const photoService = require("../services/photoService")
 const uuid = require('uuid')
@@ -11,8 +10,6 @@ class ProductController {
             const {photos} = req.files
 
             let images = []
-
-            console.log(photos)
 
             const products = await productService.add({title, description, price, category_id, sex_id})
             let product_id = products[0].id
